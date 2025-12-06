@@ -1,0 +1,32 @@
+name: Integration Check
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install chronos-core from GitHub
+      run: |
+        pip install --upgrade pip
+        pip install git+https://github.com/mahmoudediem/chronos-core.git@main
+
+    - name: Install chronos-plugin from GitHub
+      run: |
+        pip install git+https://github.com/mahmoudediem/chronos-plugin.git@main
+
+    - name: Run integration script
+      run: |
+        python -c "import importlib,sys; \
+        import chronos_core; print('core run:', chronos_core.core_run()); \
+        import chronos_plugin; print('plugin run:', chronos_plugin.plugin_run())"
