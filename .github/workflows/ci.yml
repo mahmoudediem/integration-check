@@ -19,6 +19,7 @@ jobs:
     - name: Install chronos-core from GitHub
       run: |
         pip install --upgrade pip
+        pip install -r https://raw.githubusercontent.com/mahmoudediem/chronos-core/main/requirements.txt
         pip install git+https://github.com/mahmoudediem/chronos-core.git@main
 
     - name: Install chronos-plugin from GitHub
@@ -30,3 +31,4 @@ jobs:
         python -c "import importlib,sys; \
         import chronos_core; print('core run:', chronos_core.core_run()); \
         import chronos_plugin; print('plugin run:', chronos_plugin.plugin_run())"
+v
