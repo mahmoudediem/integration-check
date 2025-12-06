@@ -31,4 +31,3 @@ jobs:
         python -c "import importlib,sys; \
         import chronos_core; print('core run:', chronos_core.core_run()); \
         import chronos_plugin; print('plugin run:', chronos_plugin.plugin_run())"
-v
